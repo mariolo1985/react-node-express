@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
 (() => {
-    console.log('loading...');
+    ReactDOM.render(<App />, document.getElementById('app'));
 })();

@@ -43,9 +43,11 @@ module.exports = {
             filename: 'css/master.min.css'
         }),
         new CopyWebpackPlugin([
-            { from: 'src/*.html', to: path.join(__dirname, 'dist'), flatten: true },
+            { from: 'src/*.html', to: path.join(__dirname, 'dist/www'), flatten: true },
             { from: 'src/images', to: path.join(__dirname, 'dist/public/images'), flatten: true },
-            { from: 'server.js', to: path.join(__dirname, 'dist'), flatten: true }
+            { from: 'server/*.js', to: path.join(__dirname, 'dist'), flatten: true },
+            { from: 'server/routes/*.js', to: path.join(__dirname, 'dist/routes'), flatten: true },
+            { from: 'server/middleware/*.js', to: path.join(__dirname, 'dist/middleware'), flatten: true }
         ])
     ]
 };
