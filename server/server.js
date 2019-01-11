@@ -20,4 +20,4 @@ app.get('/time', (req, res) => {
     res.send(`Hello! The time currently is ${req.requestTime}`);
 });
 
-app.listen(3000, () => console.log(`Starting on port ${process.env}`));
+app.listen(process.env.PORT, () => console.log(`Starting on port ${process.env.PORT}`));
