@@ -1,6 +1,6 @@
 {
   "name": "react-node-express",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "play react node express",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "clean": "node cleandist.js",
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
-    "start": "node /dist/server.js",
+    "start": "node dist/server.js",
     "start:dev": "yarn build:dev && yarn start",
     "start:prod": "yarn build && yarn start",
     "bounce": "yarn clean:modules && yarn",
