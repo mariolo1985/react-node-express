@@ -9,11 +9,11 @@
     "clean": "node cleandist.js",
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
-    "run:server": "node dist/server.js",
-    "start": "yarn build:dev && yarn run:server",
+    "server": "node dist/server.js",
+    "start": "yarn build:dev && yarn server",
     "bounce": "yarn clean:modules && yarn"
   },
-  "author": "M Lo <hello@websitesbymario>",
+  "author": "M Lo <hello@websitesbymario.com>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
