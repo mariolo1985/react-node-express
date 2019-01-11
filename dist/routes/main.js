@@ -9,7 +9,7 @@ router.use((req, res, next) => {
 
 // get
 router.get('/', (req, res) => {
-    res.send('Hello World response');
+    res.send('Server rendered');
 });
 
 // post request
