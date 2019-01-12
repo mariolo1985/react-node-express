@@ -9,7 +9,7 @@
     "clean": "node cleandist.js",
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
-    "start": "node dist/server.js",
+    "start": "node dist/server.min.js",
     "start:dev": "yarn build:dev && yarn start",
     "start:prod": "yarn build && yarn start",
     "bounce": "yarn clean:modules && yarn",

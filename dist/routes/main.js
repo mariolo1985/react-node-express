@@ -1,6 +1,8 @@
 const express = require('express');
 var router = express.Router();
 
+const getDefaultPageTemplate = require('../PageTemplates/page');
+
 // middleware
 router.use((req, res, next) => {
     console.log('Main Time: ', Date.now());
@@ -9,7 +11,7 @@ router.use((req, res, next) => {
 
 // get
 router.get('/', (req, res) => {
-    res.send('Server rendered');
+    res.send(getDefaultPageTemplate());
 });
 
 // post request
