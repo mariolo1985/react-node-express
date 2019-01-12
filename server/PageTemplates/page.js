@@ -1,5 +1,5 @@
-module.exports = function getDefaultPageTemplate() {
-    const page = `<!DOCTYPE html>
+export const getDefaultPageTemplate = (reactDom) => {
+  const page = `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="utf-8">
@@ -10,6 +10,7 @@ module.exports = function getDefaultPageTemplate() {
       <div class="content">
          <div id="app" class="wrap-inner">
             <!--- magic happens here --> 
+            ${reactDom}
          </div>
       </div>
         <script src='js/index.min.js'></script>
@@ -17,5 +18,5 @@ module.exports = function getDefaultPageTemplate() {
     </html>
     `;
 
-    return page;
+  return page;
 };
