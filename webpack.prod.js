@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const entries = [
     'babel-polyfill',
-    path.join(__dirname, 'src/js/master.js'),
+    path.join(__dirname, 'src/js/index.js'),
     path.join(__dirname, 'src/scss/master.scss')
 ];
 
@@ -15,7 +15,7 @@ module.exports = {
     entry: entries,
     output: {
         path: path.join(__dirname, 'dist/public'),
-        filename: 'js/master.min.js'
+        filename: 'js/index.min.js'
     },
     module: {
         rules: [
@@ -44,10 +44,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: 'src/*.html', to: path.join(__dirname, 'dist/www'), flatten: true },
-            { from: 'src/images', to: path.join(__dirname, 'dist/public/images'), flatten: true },
-            { from: 'server/*.js', to: path.join(__dirname, 'dist'), flatten: true },
-            { from: 'server/routes/*.js', to: path.join(__dirname, 'dist/routes'), flatten: true },
-            { from: 'server/middleware/*.js', to: path.join(__dirname, 'dist/middleware'), flatten: true }
+            { from: 'src/images', to: path.join(__dirname, 'dist/public/images'), flatten: true }
         ])
     ]
 };
