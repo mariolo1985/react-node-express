@@ -1,53 +1,58 @@
 const express = require('express');
-var router = express.Router();
+var mainRoute = express.Router();
 
-const getDefaultPageTemplate = require('../PageTemplates/page');
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+
+import App from '../../src/components/App';
+import { getDefaultPageTemplate } from '../PageTemplates/page';
 
 // middleware
-router.use((req, res, next) => {
+mainRoute.use((req, res, next) => {
     console.log('Main Time: ', Date.now());
     next();
 });
 
 // get
-router.get('/', (req, res) => {
-    res.send(getDefaultPageTemplate());
+mainRoute.get('/', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(getDefaultPageTemplate(renderToString(<App />)));
 });
 
 // post request
-router.post('/', (req, res) => {
+mainRoute.post('/', (req, res) => {
     res.send('Post request');
 });
 
 // put
-router.put('/', (req, res) => {
+mainRoute.put('/', (req, res) => {
     res.send('Put request');
 });
 
 // all request
-router.all('/secretallrequest', (req, res, next) => {
+mainRoute.all('/secretallrequest', (req, res, next) => {
     res.send(`you found the secret all request on ${req.requestTime}`);
     next();
 });
 
 // params
-router.get('/users/:userId/books/:bookId', (req, res) => {
+mainRoute.get('/users/:userId/books/:bookId', (req, res) => {
     // http://localhost:3000/users/34/books/8989
     res.send(req.params);
 });
 
-router.get('/flights/:from-:to', (req, res) => {
+mainRoute.get('/flights/:from-:to', (req, res) => {
     // http://localhost:3000/flights/LAX-SFO
     res.send(req.params);
 });
 
-router.get('/plantae/:genus.:species', (req, res) => {
+mainRoute.get('/plantae/:genus.:species', (req, res) => {
     // http://localhost:3000/plantae/Prunus.persica
     res.send(req.params);
 });
 
 // next callbacks
-router.get('/example/b',
+mainRoute.get('/example/b',
     function (req, res, next) {
         console.log('the response will be sent by the next function');
         next();
@@ -71,10 +76,10 @@ const cb2 = function (req, res) {
     res.send('Hello from C!')
 };
 
-router.get('/example/c', [cb0, cb1, cb2]);
+mainRoute.get('/example/c', [cb0, cb1, cb2]);
 
 // route()
-router.route('/book')
+mainRoute.route('/book')
     .get(function (req, res) {
         res.send('Get a random book')
     })
@@ -85,4 +90,4 @@ router.route('/book')
         res.send('Update the book')
     });
 
-module.exports = router;
+export { mainRoute };

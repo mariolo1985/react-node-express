@@ -2,7 +2,7 @@ import express from 'express';
 const app = express();
 const path = require('path');
 
-const mainRoute = require('./routes/main');
+import { mainRoute } from './routes/main';
 const birdsRoute = require('./routes/birds');
 const myLogger = require('./middleware/logTime');
 const addTime = require('./middleware/addTime');
