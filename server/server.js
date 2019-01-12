@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const path = require('path');
 
@@ -20,9 +20,4 @@ app.get('/time', (req, res) => {
     res.send(`Hello! The time currently is ${req.requestTime}`);
 });
 
-const env = process.env.NODE_ENV || 'development';
-if (env === 'development') {
-    app.listen(3000, () => console.log(`Starting dev on port ${process.env.PORT}`));
-} else {
-    app.listen(process.env.PORT, () => console.log(`Starting prod on port ${process.env.PORT}`));
-}
+app.listen(process.env.PORT || 3000, () => console.log(`Starting dev on port ${process.env.PORT}`));
