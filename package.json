@@ -1,6 +1,6 @@
 {
   "name": "react-node-express",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "play react node express",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,10 @@
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
     "start": "node dist/server.js",
-    "start:dev": "yarn build:dev && nodemon dist/server.js",
+    "start:dev": "nodemon dist/server.js",
     "start:prod": "yarn build && yarn start",
     "bounce": "yarn clean:modules && yarn",
-    "publish:heroku": "yarn build && git push heroku heroku/init:master"
+    "publish:heroku": "yarn build && git push heroku master"
   },
   "author": "M Lo <hello@websitesbymario.com>",
   "license": "MIT",
