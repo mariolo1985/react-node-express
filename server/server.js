@@ -1,12 +1,12 @@
 import express from 'express';
-const app = express();
-const path = require('path');
+import path from 'path';
 
 import { mainRoute } from './routes/main';
-const birdsRoute = require('./routes/birds');
-const myLogger = require('./middleware/logTime');
-const addTime = require('./middleware/addTime');
+import { birdsRoute } from './routes/birds';
+import { myLogger } from './middleware/logTime';
+import { addTime } from './middleware/addTime';
 
+const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'www')));
 

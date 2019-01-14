@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+
+const router = express.Router();
 
 // middleware
-router.use(function timeLog(req, res, next) {
+router.use((req, res, next) => {
     console.log('Time: ', Date.now());
     next();
 });
@@ -16,4 +17,4 @@ router.get('/about', (req, res) => {
     res.send('about birds');
 });
 
-module.exports = router;
+export { router as birdsRoute };

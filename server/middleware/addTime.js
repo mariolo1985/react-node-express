@@ -1,4 +1,4 @@
-module.exports = function addTime(req, res, next) {
+export const addTime = (req, res, next) => {
     req.requestTime = Date.now();
     next();
 };

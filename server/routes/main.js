@@ -1,12 +1,11 @@
-const express = require('express');
-var mainRoute = express.Router();
-
+import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import App from '../../src/components/App';
 import { getDefaultPageTemplate } from '../PageTemplates/page';
 
+const mainRoute = express.Router();
 // middleware
 mainRoute.use((req, res, next) => {
     console.log('Main Time: ', Date.now());
@@ -53,11 +52,11 @@ mainRoute.get('/plantae/:genus.:species', (req, res) => {
 
 // next callbacks
 mainRoute.get('/example/b',
-    function (req, res, next) {
+    (req, res, next) => {
         console.log('the response will be sent by the next function');
         next();
     },
-    function (req, res) {
+    (req, res) => {
         res.send('hello from B');
     }
 );

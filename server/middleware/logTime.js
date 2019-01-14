@@ -1,4 +1,4 @@
-module.exports = function myLogger(req, res, next) {
+export const myLogger = (req, res, next) => {
     console.log('LOGGED');
     next();
 };
