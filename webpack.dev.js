@@ -37,7 +37,7 @@ module.exports = {
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
-            minimize: true
+            minimize: false
         }),
         new MiniCssExtractPlugin({
             filename: 'css/master.min.css'
