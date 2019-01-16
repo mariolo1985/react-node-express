@@ -1,4 +1,4 @@
-module.exports = function addTime(req, res, next) {
-    req.requestTime = Date.now();
+export const addTime = (req, res, next) => {
+    req.requestTime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
     next();
 };
