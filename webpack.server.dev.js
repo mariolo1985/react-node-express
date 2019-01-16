@@ -37,7 +37,7 @@ module.exports = {
             minimize: false
         }),
         new CopyWebpackPlugin([
-            { from: '*.env', to: path.join(__dirname, 'dist'), flatten: true }
+            { from: '.env', to: path.join(__dirname, 'dist') }
         ])
     ]
 };
