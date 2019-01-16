@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const entries = [
     'babel-polyfill',
@@ -33,7 +34,10 @@ module.exports = {
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
+            minimize: false
+        }),
+        new CopyWebpackPlugin([
+            { from: '*.env', to: path.join(__dirname, 'dist'), flatten: true }
+        ])
     ]
 };
