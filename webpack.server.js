@@ -15,7 +15,7 @@ module.exports = {
         net: 'empty'
     },
     name: 'Bundling dev',
-    mode: 'production',
+    mode: 'development',
     entry: entries,
     output: {
         path: path.join(__dirname, 'dist'),
