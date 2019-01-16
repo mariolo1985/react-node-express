@@ -1,12 +1,12 @@
 {
   "name": "react-node-express",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "play react node express",
   "main": "index.js",
   "scripts": {
-    "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.prod.js && cross-env NODE_ENV=production webpack --config webpack.server.js",
-    "build:dev": "yarn clean && cross-env NODE_ENV=development webpack --config webpack.dev.js && cross-env NODE_ENV=development webpack --config webpack.server.js",
-    "build:server": "cross-env NODE_ENV=development webpack --config webpack.server.js",
+    "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.prod.js && cross-env NODE_ENV=production webpack --config webpack.server.prod.js",
+    "build:dev": "yarn clean && cross-env NODE_ENV=development webpack --config webpack.dev.js && cross-env NODE_ENV=development webpack --config webpack.server.dev.js",
+    "build:server": "cross-env NODE_ENV=development webpack --config webpack.server.dev.js",
     "clean": "node cleandist.js",
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
