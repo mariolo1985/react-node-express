@@ -4,6 +4,7 @@ import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
+import dotenv from 'dotenv';
 
 import DataSchema from './Data';
 import { mainRoute } from './routes/main';
@@ -11,6 +12,7 @@ import { birdsRoute } from './routes/birds';
 import { myLogger } from './middleware/logTime';
 import { addTime } from './middleware/addTime';
 
+dotenv.config();
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'www')));
@@ -31,7 +33,7 @@ app.get('/time', (req, res) => {
 });
 
 // backend stuff
-const dbRoute = 'mongodb://writer:password01@ds257564.mlab.com:57564/wtbcarparts';
+const dbRoute = process.env.MONGODB_URL;
 mongoose.connect(
     dbRoute,
     {
