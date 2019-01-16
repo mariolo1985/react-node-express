@@ -27,7 +27,7 @@ app.use(addTime);
 app.use('/', mainRoute);
 app.use('/birds', birdsRoute);
 app.get('/time', (req, res) => {
-    res.send(`Hello! The time currently is ${req.requestTime}`);
+    res.send(`Hello! The time currently is ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
 });
 
 // backend stuff
@@ -49,7 +49,7 @@ db.on('connecting', console.error.bind(console, 'MongoDb connection connecting')
 db.once('open', () => {
     console.log('connected to database...');
     let data = new Data({
-        message: 'Init Message'
+        message: `Init Message on ${ new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') }`
     });
     data.markModified('message');
     console.log('putData data: ', data);
@@ -103,4 +103,4 @@ router.post('/putData', (req, res) => {
 
 app.use('/api', router);
 
-app.listen(process.env.PORT || 3000, () => console.log(`Starting dev on port ${process.env.PORT}`));
+app.listen(process.env.PORT || 3000, () => console.log(`Starting dev on port ${ process.env.PORT }`));
