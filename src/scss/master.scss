@@ -1,5 +1,54 @@
 html,
 body {
+    font-family: "Arial";
     margin: 0;
     padding: 0;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.app-container {
+    padding: 24px;
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: 300;
+    }
+    p {
+        font-weight: 300;
+    }
+    .message-box {
+        font-size: 14px;
+        height: 200px;
+        padding: 10px;
+        width: 350px;
+    }
+    .message-container {
+        background-color: #555555;
+        color: #EEEEEE;
+        height: 200px;
+        opacity: .7;
+        padding: 10px;
+        width: 350px;
+        .your-message {
+            margin-left: 24px;
+        }
+    }
+    .btn-container {
+        margin-top: 10px;
+        button {
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 300;
+            padding: 10px 25px;
+            text-align: center;
+            &:hover {
+                box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
 }
