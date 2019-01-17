@@ -8,7 +8,7 @@ import { getDefaultPageTemplate } from '../PageTemplates/page';
 const mainRoute = express.Router();
 // middleware
 mainRoute.use((req, res, next) => {
-    console.log('Main Time: ', Date.now());
+    console.log('Main Route Time: ', Date.now());
     next();
 });
 
