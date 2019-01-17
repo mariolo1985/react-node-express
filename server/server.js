@@ -12,30 +12,11 @@ import { birdsRoute } from './routes/birds';
 import { myLogger } from './middleware/logTime';
 import { addTime } from './middleware/addTime';
 
-dotenv.config();
-const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'www')));
-app.use(compression());
+dotenv.config(); // reads .env config
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(logger('dev'));
-
-// add middleware
-app.use(myLogger);
-app.use(addTime);
-
-app.use('/', mainRoute);
-app.use('/birds', birdsRoute);
-app.get('/time', (req, res) => {
-    res.send(`Hello! The time currently is ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
-});
-
-// backend stuff
-const dbRoute = process.env.MONGODB_URL;
+// databse setup
 mongoose.connect(
-    dbRoute,
+    process.env.MONGODB_URL,
     {
         useNewUrlParser: true
     }
@@ -49,60 +30,61 @@ db.on('connected', console.error.bind(console, 'MongoDb connection connected'));
 db.on('disconnected', console.error.bind(console, 'MongoDb connection disconnecting'));
 db.on('connecting', console.error.bind(console, 'MongoDb connection connecting'));
 db.once('open', () => {
-    console.log('connected to database...');
-    let data = new Data({
-        message: `Init Message on ${ new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') }`
+    const data = new Data({
+        message: `Database opened on ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`
     });
     data.markModified('message');
-    console.log('putData data: ', data);
-    console.log('typeof data: ', typeof data.save);
-    data.save((err, datar) => {
-        console.log('in save: ', datar);
+    data.save((err) => {
         if (err) console.log('has error: ', err);
     });
 });
 
+// app
+const app = express();
+app.use(express.static(path.join(__dirname, 'public'))); // serving public assets
+app.use(express.static(path.join(__dirname, 'www'))); // serving www assets
+app.use(compression()); // compress it
+
+// backend stuff?  (to do: find out more)
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(logger('dev'));
+
+// add middleware
+app.use(myLogger);
+app.use(addTime);
+
+// add routes
 const router = express.Router();
 
+app.use('/', mainRoute);
+app.use('/birds', birdsRoute);
+app.get('/time', (req, res) => {
+    res.send(`Hello! The time currently is ${new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')}`);
+});
 
-// this is our get method
 // this method fetches all available data in our database
 router.get('/getdata', (req, res) => {
-    console.log('db status: ', db.readyState);
-
     Data.find((err, data) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data });
     });
 });
 
-// this is our create methid
 // this method adds new data in our database
 router.post('/putData', (req, res) => {
-    console.log('putData req.body: ', req.body);
-
     const { message } = req.body;
-    let data = new Data({
+    const data = new Data({
         message
     });
     data.markModified('message');
-    /*
-    data.message = message;
-    data.markModified('message');
-    data.id = id;
-    data.markModified('id');
-    */
-    console.log('putData data: ', data);
-    console.log('typeof data: ', typeof data.save);
-    data.save((err, datar) => {
-        console.log('in save: ', datar);
+
+    data.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });
     });
-
-    // return res.json({ success: false, error: 'Save failed' });
 });
 
 app.use('/api', router);
 
-app.listen(process.env.PORT || 3000, () => console.log(`Starting dev on port ${ process.env.PORT }`));
+app.listen(process.env.PORT || 9999, () => console.log(`Starting dev on port ${process.env.PORT}`));
