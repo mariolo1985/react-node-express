@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = [
     {
@@ -47,7 +48,11 @@ module.exports = [
             new CopyWebpackPlugin([
                 { from: 'src/*.html', to: path.join(__dirname, 'dist/www'), flatten: true },
                 { from: 'src/images', to: path.join(__dirname, 'dist/public/images'), flatten: true }
-            ])
+            ]),
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                reportFilename: path.join(__dirname, 'report.html')
+            })
         ]
     },
     {
