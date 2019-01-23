@@ -66,9 +66,9 @@ apiRoute.post('/addimage', (req, res) => {
             }
         };
 
-        ddb.putItem(putParams, (putError, putData) => {
+        ddb.putItem(putParams, (putError) => {
             if (putError) {
-                return res.json({ success: false, err: putError });
+                return res.json({ success: false, error: putError });
             }
 
             return res.json(
@@ -88,19 +88,15 @@ apiRoute.post('/addimage', (req, res) => {
 apiRoute.get('/secretdev', (req, res) => {
     const params = {
         TableName: 'Userdev',
-        Item: {
-            id: { S: uuidv1().toString() },
-            testCol: { S: uuidv1().toString() }
+        Key: {
+            id: { S: 'fbfafed0-1f61-11e9-a6b2-31086bd691de' },
         }
     };
 
-    ddb.putItem(params, (err, data) => {
-        if (err) {
-            console.log('putItem error:', err);
-            return res.json({ success: false });
-        }
-        console.log('data', data);
-        return res.json({ success: true, data });
+    // Call DynamoDB to read the item from the table
+    ddb.getItem(params, (err, data) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ scucess: true, itemData: data.Item });
     });
 });
 
