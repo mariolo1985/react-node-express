@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 
 class App extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class App extends Component {
 
         this.state = {
             clicked: false,
+            filePart: null,
             message: ''
         };
     }
@@ -37,8 +39,28 @@ class App extends Component {
         });
     }
 
+    onFileDrop = (files) => {
+        console.log('files: ', files);
+        let file = files[0];
+        file = {
+            ...file,
+            preview: URL.createObjectURL(file)
+        };
+
+        const fileToUpload = new FormData();
+        fileToUpload.append('file', files[0], files[0].name);
+        fileToUpload.append('partsBody', 'this is my part');
+        axios.post('/api/addimage', fileToUpload)
+            .then((response) => {
+                console.log('post response', response);
+                this.setState({
+                    filePart: file
+                });
+            });
+    }
+
     render() {
-        const { clicked, message } = this.state;
+        const { clicked, filePart, message } = this.state;
 
         return (
             <section className='app-container'>
@@ -62,6 +84,24 @@ class App extends Component {
                         ? <div>Message sent! I can&#39;t wait to read it!</div>
                         : <div className='btn-container'><button type='button' onClick={() => this.onBtnClick()}>{!clicked && 'Send Message'}</button></div>
                 }
+                <Dropzone onDrop={this.onFileDrop} accept='image/*'>
+                    {({ getRootProps, getInputProps, isDragActive }) => (
+                        <div
+                            {...getRootProps()}
+                        >
+                            <input {...getInputProps()} />
+                            {
+                                isDragActive
+                                    ? <p>Drop files here...</p>
+                                    : <p>Try dropping some files here, or click to select files to upload.</p>
+                            }
+                            {
+                                filePart !== null
+                                && <img alt='file' src={filePart.preview} />
+                            }
+                        </div>
+                    )}
+                </Dropzone>
             </section>
         );
     }
