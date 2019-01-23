@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = [
     {
-        name: 'Bundling dev client',
+        name: 'Bundling prod client',
         mode: 'production',
         entry: {
             index: [
@@ -56,7 +56,7 @@ module.exports = [
         ]
     },
     {
-        name: 'Bundling dev server',
+        name: 'Bundling prod server',
         mode: 'production',
         target: 'node',
         node: {
