@@ -1,11 +1,12 @@
 {
   "name": "react-node-express",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "play react node express",
   "main": "index.js",
   "scripts": {
     "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "build:dev": "yarn clean && cross-env NODE_ENV=development webpack --config webpack.dev.js",
+    "build:dev:server": "cross-env NODE_ENV=development webpack --config webpack.dev.server.js",
     "clean": "node cleandist.js",
     "clean:modules": "node cleanmodules.js",
     "lint": "eslint src",
@@ -18,15 +19,19 @@
   "author": "M Lo <hello@websitesbymario.com>",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.392.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
     "mongoose": "^5.4.4",
     "morgan": "^1.9.1",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-dropzone": "^8.0.3",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
