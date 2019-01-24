@@ -43,6 +43,14 @@ const ddb = new AWS.DynamoDB({
     }
 });
 
+/** **
+ *
+ * cognito work
+ *
+ * */
+const cognitoId = new AWS.CognitoIdentityServiceProvider({
+    apiVersion: '2016-04-18'
+});
 
 const apiRoute = express.Router();
 
@@ -85,11 +93,11 @@ apiRoute.post('/addimage', (req, res) => {
 });
 
 // fix me - delete me when dev complete
-apiRoute.get('/secretdev', (req, res) => {
+apiRoute.get('/getsecretdev', (req, res) => {
     const params = {
         TableName: 'Userdev',
         Key: {
-            id: { S: 'fbfafed0-1f61-11e9-a6b2-31086bd691de' },
+            id: { S: 'fbfafed0-1f61-11e9-a6b2-31086bd691de' }
         }
     };
 
@@ -97,6 +105,32 @@ apiRoute.get('/secretdev', (req, res) => {
     ddb.getItem(params, (err, data) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ scucess: true, itemData: data.Item });
+    });
+});
+
+apiRoute.get('/secretdev', (req, res) => {
+    const params = {
+        ClientId: '5ijnl7f6iv2hagn3prh84uirf4',
+        SecretHash: '1o3iu27861nhnch0koom45nc3f6gbpdto5skrprvvqj7grvtp8qa',
+        Password: 'Password)1',
+        Username: 'username1',
+        UserAttributes: [
+            {
+                Name: 'email',
+                Value: 'email@email.com'
+            }
+        ],
+        ValidationData: [
+            {
+                Name: 'email',
+                Value: 'email@email.com'
+            }
+        ]
+    };
+
+    cognitoId.signUp(params, (err, data) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true, SignUpData: data });
     });
 });
 
