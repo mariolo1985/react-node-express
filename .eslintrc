@@ -6,7 +6,7 @@
     "parser": "babel-eslint",
     "rules": { 
         "comma-dangle": ["error","never"],// comma stuff
-        "indent": ["error",4],// for indent types
+        "indent": ["error",4, {"SwitchCase":1}],// for indent types
         "import/prefer-default-export": false,// no I prefer exports without defaults        
         "linebreak-style": 0,// something with LF and CRLF formating        
         "react/jsx-filename-extension": [1,{"extensions": [".js",".jsx"]}],// allow jsx in files with .js        
