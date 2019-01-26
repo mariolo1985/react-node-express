@@ -12,7 +12,7 @@ module.exports = [
             index: [
                 'babel-polyfill',
                 path.join(__dirname, 'src/js/index.js'),
-                path.join(__dirname, 'src/scss/master.scss')
+                path.join(__dirname, 'src/less/master.less')
             ]
         },
         output: {
@@ -29,11 +29,11 @@ module.exports = [
                     }
                 },
                 {
-                    test: /\.scss$/,
+                    test: /\.less$/,
                     use: [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
-                        'sass-loader'
+                        'less-loader'
                     ]
                 }
             ]
