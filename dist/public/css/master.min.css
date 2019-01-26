@@ -1,2 +1,78 @@
-html,body{font-family:"Arial";margin:0;padding:0}.bold{font-weight:600}.app-container{padding:24px}.app-container h1{font-size:36px}.app-container h2{font-size:24px;font-weight:300}.app-container p{font-weight:300}.app-container .message-box{font-size:14px;height:200px;padding:10px;width:350px}.app-container .message-container{background-color:#555555;color:#EEEEEE;height:200px;opacity:.7;padding:10px;width:350px}.app-container .message-container .your-message{margin-left:24px}.app-container .btn-container{margin-top:10px}.app-container .btn-container button{border-radius:3px;font-size:16px;font-weight:300;padding:10px 25px;text-align:center}.app-container .btn-container button:hover{box-shadow:0 0 2px 0 rgba(0,0,0,0.5)}
+html,
+body {
+  font-family: "Arial";
+  margin: 0;
+  padding: 0;
+}
+.bold {
+  font-weight: 600;
+}
+.app-container {
+  padding: 24px;
+}
+.app-container h1 {
+  font-size: 36px;
+}
+.app-container h2 {
+  font-size: 24px;
+  font-weight: 300;
+}
+.app-container p {
+  font-weight: 300;
+}
+.app-container .message-box {
+  font-size: 14px;
+  height: 200px;
+  padding: 10px;
+  width: 350px;
+}
+.app-container .message-container {
+  background-color: #555555;
+  color: #EEEEEE;
+  height: 200px;
+  opacity: 0.7;
+  padding: 10px;
+  width: 350px;
+}
+.app-container .message-container .your-message {
+  margin-left: 24px;
+}
+.app-container .btn-container {
+  margin-top: 10px;
+}
+.app-container .btn-container button {
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px 25px;
+  text-align: center;
+}
+.app-container .btn-container button:hover {
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+.clearfix {
+  clear: both;
+  content: '';
+  display: table;
+}
+.clear:before,
+.clear:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+.btn {
+  border: none;
+  border-radius: 66px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  height: 66px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+}
+.btn:hover {
+  box-shadow: 0 0 0 2px rgba(45, 95, 139, 0.5);
+}
 
