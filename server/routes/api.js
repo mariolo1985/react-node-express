@@ -108,10 +108,9 @@ apiRoute.get('/getsecretdev', (req, res) => {
     });
 });
 
-apiRoute.get('/secretdev', (req, res) => {
+apiRoute.get('/adduser', (req, res) => {
     const params = {
-        ClientId: '5ijnl7f6iv2hagn3prh84uirf4',
-        SecretHash: '1o3iu27861nhnch0koom45nc3f6gbpdto5skrprvvqj7grvtp8qa',
+        ClientId: '7klm3gi1n3c7hus19arfr6jenv',
         Password: 'Password)1',
         Username: 'username1',
         UserAttributes: [
