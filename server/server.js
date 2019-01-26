@@ -9,6 +9,7 @@ import fileUpload from 'express-fileupload';
 import { mainRoute } from './routes/main';
 import { birdsRoute } from './routes/birds';
 import { apiRoute } from './routes/api';
+import { loginRoute } from './routes/login';
 import { myLogger } from './middleware/logTime';
 import { addTime } from './middleware/addTime';
 
@@ -37,5 +38,6 @@ app.get('/time', (req, res) => {
 });
 
 app.use('/api', apiRoute);
+app.use('/login', loginRoute);
 
 app.listen(process.env.PORT || 9999, () => console.log(`Starting dev on port ${process.env.PORT || 9999}`));
