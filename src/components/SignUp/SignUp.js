@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { SignUpInput } from '.';
 
 class SignUp extends Component {
     constructor(props) {
@@ -94,6 +95,37 @@ class SignUp extends Component {
 
     render() {
         const { hasError, errorMessage, isSignUpSuccessful } = this.state;
+        const inputConfig = [
+            {
+                handleOnChange: this.onNameChange,
+                isRequired: false,
+                inputType: 'text',
+                labelText: 'Name',
+                placeholderText: 'Enter Name'
+            },
+            {
+                handleOnChange: this.onEmailChange,
+                isRequired: true,
+                inputType: 'email',
+                labelText: 'Email',
+                placeholderText: 'Enter Email'
+            },
+            {
+                handleOnChange: this.onUsernameChange,
+                isRequired: true,
+                inputType: 'text',
+                labelText: 'Username',
+                placeholderText: 'Enter Username'
+            },
+            {
+                handleOnChange: this.onPasswordChange,
+                isRequired: true,
+                inputType: 'password',
+                labelText: 'Password',
+                placeholderText: 'Enter Password'
+            }
+        ];
+
         return (
             <div className='sign-up-wrapper'>
                 {
@@ -106,31 +138,18 @@ class SignUp extends Component {
                         )
                         : (
                             <form className='form-sign-up'>
-                                <div className='form-input-wrapper'>
-                                    <span className='form-input-label'>Name:</span>
-                                    <input placeholder='Enter Name' type='text' className='sign-up-name' onChange={e => this.onNameChange(e)} />
-                                </div>
-                                <div className='form-input-wrapper'>
-                                    <span className='form-input-label'>
-                                        Email:
-                                        <span className='form-input-label-required'>*</span>
-                                    </span>
-                                    <input placeholder='Enter Email' type='email' className='sign-up-email' onChange={e => this.onEmailChange(e)} />
-                                </div>
-                                <div className='form-input-wrapper'>
-                                    <span className='form-input-label'>
-                                        Username:
-                                        <span className='form-input-label-required'>*</span>
-                                    </span>
-                                    <input placeholder='Enter Username' type='text' className='sign-up-username' onChange={e => this.onUsernameChange(e)} />
-                                </div>
-                                <div className='form-input-wrapper'>
-                                    <span className='form-input-label'>
-                                        Password:
-                                        <span className='form-input-label-required'>*</span>
-                                    </span>
-                                    <input placeholder='Enter Password' type='password' className='sign-up-password' onChange={e => this.onPasswordChange(e)} />
-                                </div>
+                                {
+                                    inputConfig.map(item => (
+                                        <SignUpInput
+                                            key={item.labelText}
+                                            handleOnChange={item.handleOnChange}
+                                            isRequired={item.isRequired}
+                                            inputType={item.inputType}
+                                            labelText={item.labelText}
+                                            placeholderText={item.placeholderText}
+                                        />
+                                    ))
+                                }
                                 <button type='button' className='btn btn-sign-up' onClick={() => this.onSignUpClick()}>Sign Up</button>
                             </form>
                         )
